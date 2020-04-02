@@ -1,15 +1,16 @@
 package br.eti.arlon.springmvc.controller;
-  
 
-import org.springframework.stereotype.Controller;  
-import org.springframework.web.bind.annotation.GetMapping;  
-import org.springframework.web.servlet.ModelAndView;
- 
-@Controller  
-public class HomeController {  
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
-     @GetMapping(value = "/")  
-     public ModelAndView exibirHome(){  
-          return new ModelAndView("Home");  
-     }  
-}  
+@Controller
+public class HomeController {
+
+	@GetMapping("/")
+	public String exibirHome(Model model) {
+		
+		model.addAttribute("message", "ALUNO: Arlon Antonio, projetoMVC");
+		return "Home";
+	}
+}
