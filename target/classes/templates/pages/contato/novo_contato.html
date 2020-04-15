@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	>
+	<div id="page-wrapper">
+		<div >
+			<div >
+				<h4 >Novo Contato</h4>
+			</div>
+		</div>
+
+		<ol >
+			<li ><a th:href="@{/}">Home</a></li>
+			<li >Contatos</li>
+		</ol>
+		
+		
+		
+		<form th:object="${contato}" th:action="@{/contatos/save}" method="POST" role="form">
+		
+		<input id="id" type="hidden"  th:field="*{id}"/>
+		<div >
+	        <div th:if="${#fields.hasAnyErrors()}">
+	            <div th:each="detailedError : ${#fields.detailedErrors()}">
+		                <span th:text="${detailedError.message}"></span>
+		            </div>
+		        </div>
+		    </div> 
+		
+		<div  th:classappend="${#fields.hasErrors('nome')}? 'has-error'">
+			<label>Nome</label> 
+			<input id="name"  type="text" name="nome"  th:field="*{nome}"/>
+		</div>
+		
+		<div  th:classappend="${#fields.hasErrors('email')}? 'has-error'">
+			<label>E-mail</label> 
+			<input  type="text" name="email"  th:field="*{email}"/>
+		</div>
+		
+		<div >
+			<button type="submit" >Salvar</button>
+			<a th:href="@{/contatos}" type="button" >Contatos</a>
+		</div>
+		</form>
+	</div>
+
+</html>

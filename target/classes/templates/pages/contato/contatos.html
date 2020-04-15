@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+
+
+<div id="page-wrapper">
+
+	<h2>Contatos</h2>
+	<ol>
+		<li><a th:href="@{/}">Home</a></li>
+		<li>Contato</li>
+
+	</ol>
+	<br />
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nome</th>
+				<th>E-mail</th>
+				<th>Status</th>
+				<th >Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="c: ${contatos}">
+				<td th:text="${c.id}"></td>
+				<td th:text="${c.nome}"></td>
+				<td th:text="${c.email}"></td>
+				<td th:text="(${c.ativo} ? 'Ativo' : 'Inativo')"></td>
+				<td><a th:href="@{contatos/edit/{id}(id=${c.id})}"
+					type="button">Editar</a> <a
+					th:href="@{contatos/ativar/{id}(id=${c.id})}" type="button">Ativar</a>
+
+					<a th:href="@{contatos/delete/{id}(id=${c.id})}" type="button">Excluir</a>
+
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan="6" th:if="${#lists.isEmpty(contatos)}">Nenhum
+					contato foi encontrado</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a th:href="@{/contatos/novo}" type="button">Novo Contato</a>
+
+
+
+</div>
+
+
+
+</html>
